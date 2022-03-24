@@ -45,9 +45,6 @@ private:
 	sf::Sprite sprite;
 
 	//Map objects
-	sf::Texture CarTexture1;
-	sf::Sprite CarSprite;
-
 	
 
 	// Private functions

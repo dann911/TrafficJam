@@ -41,6 +41,7 @@ void Game::initTextures()
 
 	this->textures["CAR2-VER"] = new sf::Texture();
 	this->textures["CAR2-VER"]->loadFromFile("Textures/car2-vertical.png");
+
 }
 
 void Game::initSprites()
@@ -50,7 +51,6 @@ void Game::initSprites()
 	this->sprite.setPosition(sf::Vector2f(120.f, 90.f));
 	this->sprite.setScale(0.7, 0.7);
 
-	this->CarSprite.setTexture(this->CarTexture1);
 
 }
 
