@@ -21,6 +21,9 @@ class Game
 {
 private:
 	//Variables
+	int NumberOfCars;
+
+
 	//Window
 	sf::RenderWindow* window;
 	sf::VideoMode VideoMode;
