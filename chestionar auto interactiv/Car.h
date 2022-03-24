@@ -1,17 +1,25 @@
 #pragma once
 
-#include "Game.h"
+#include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Audio.hpp>
+#include <SFML/Network.hpp>
+
 
 class Car
 {
 private:
 
+	//Objects
+	sf::Sprite shape;
 
+	//Resources
 
 public:
 	// Constructors / Destructors
 
-	Car();
+	Car(sf::Texture* texture, float pos_x, float pos_y, double scale);
 	virtual ~Car();
 
 	//Functions
