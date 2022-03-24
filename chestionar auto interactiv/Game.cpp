@@ -26,7 +26,7 @@ void Game::initWindow()
 void Game::initTextures()
 {
     //Load map texture from file
-	if (this->texture.loadFromFile("Textures/basic intersection v1.PNG") == false)
+	if (this->texture.loadFromFile("Textures/basic intersection v2.PNG") == false)
 		std::cout << "nu-l gasim pe cioaca" << std::endl;
 
 	this->textures["CAR1-HOR"] = new sf::Texture();
