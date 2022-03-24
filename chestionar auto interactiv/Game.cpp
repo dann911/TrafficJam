@@ -6,6 +6,9 @@
 void Game::initVariables()
 {
 	this->window = nullptr;
+	std::srand(time(0));
+	this->NumberOfCars = std::rand() % 3 + 2;
+	std::cout << NumberOfCars << std::endl;
 }
 
 void Game::initWindow()
@@ -57,6 +60,11 @@ void Game::initCars()
 	this->cars.push_back(new Car(this->textures["CAR2-HOR"], car_positions[2 - 1].first, car_positions[2 - 1].second, -0.25));
 	this->cars.push_back(new Car(this->textures["CAR2-VER"], car_positions[3 - 1].first, car_positions[3 - 1].second, -0.25));
 	this->cars.push_back(new Car(this->textures["CAR1-HOR"], car_positions[4 - 1].first, car_positions[4 - 1].second, 0.25));
+
+	std::random_shuffle(std::begin(cars), std::end(cars));
+
+	while (this->cars.size() > this->NumberOfCars)
+		cars.pop_back();
 }
 
 
