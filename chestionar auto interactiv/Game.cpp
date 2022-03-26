@@ -29,18 +29,18 @@ void Game::initTextures()
 	if (this->texture.loadFromFile("Textures/basic intersection v2.PNG") == false)
 		std::cout << "nu-l gasim pe cioaca" << std::endl;
 
-	this->textures["CAR1-HOR"] = new sf::Texture();
-	if (this->textures["CAR1-HOR"]->loadFromFile("Textures/car1-horizontal.png") == false)
+	this->textures["CARBLUE-HOR"] = new sf::Texture();
+	if (this->textures["CARBLUE-HOR"]->loadFromFile("Textures/car1-horizontal.png") == false)
 		std::cout << "no car texture foun" << std::endl;
 
-	this->textures["CAR1-VER"] = new sf::Texture();
-	this->textures["CAR1-VER"]->loadFromFile("Textures/car1-vertical.png");
+	this->textures["CARRED-VER"] = new sf::Texture();
+	this->textures["CARRED-VER"]->loadFromFile("Textures/car2-vertical.png");
 
-	this->textures["CAR2-HOR"] = new sf::Texture();
-	this->textures["CAR2-HOR"]->loadFromFile("Textures/car2-horizontal.png");
+	this->textures["CARYELLOW-HOR"] = new sf::Texture();
+	this->textures["CARYELLOW-HOR"]->loadFromFile("Textures/carYellow-horizontal.png");
 
-	this->textures["CAR2-VER"] = new sf::Texture();
-	this->textures["CAR2-VER"]->loadFromFile("Textures/car2-vertical.png");
+	this->textures["CARGREEN-VER"] = new sf::Texture();
+	this->textures["CARGREEN-VER"]->loadFromFile("Textures/carGREEN-vertical.png");
 
 }
 
@@ -56,10 +56,10 @@ void Game::initSprites()
 
 void Game::initCars()
 {
-	this->cars.push_back(new Car(this->textures["CAR1-VER"], car_positions[1 - 1].first, car_positions[1 - 1].second, 0.25));
-	this->cars.push_back(new Car(this->textures["CAR2-HOR"], car_positions[2 - 1].first, car_positions[2 - 1].second, -0.25));
-	this->cars.push_back(new Car(this->textures["CAR2-VER"], car_positions[3 - 1].first, car_positions[3 - 1].second, -0.25));
-	this->cars.push_back(new Car(this->textures["CAR1-HOR"], car_positions[4 - 1].first, car_positions[4 - 1].second, 0.25));
+	this->cars.push_back(new Car(this->textures["CARRED-VER"], car_positions[1 - 1].first, car_positions[1 - 1].second, 0.25));
+	this->cars.push_back(new Car(this->textures["CARBLUE-HOR"], car_positions[2 - 1].first, car_positions[2 - 1].second, -0.25));
+	this->cars.push_back(new Car(this->textures["CARGREEN-VER"], car_positions[3 - 1].first, car_positions[3 - 1].second, -0.25));
+	this->cars.push_back(new Car(this->textures["CARYELLOW-HOR"], car_positions[4 - 1].first, car_positions[4 - 1].second, 0.25));
 
 	std::random_shuffle(std::begin(cars), std::end(cars));
 
