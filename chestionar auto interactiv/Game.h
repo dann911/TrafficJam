@@ -2,7 +2,9 @@
 
 #include <iostream>
 #include <vector>
+#include <deque>
 #include <map>
+#include <climits>
 
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
@@ -22,39 +24,42 @@ class Game
 private:
 	//Variables
 	int NumberOfCars;
-
+	bool decision;
 
 	//Window
 	sf::RenderWindow* window;
 	sf::VideoMode VideoMode;
 	sf::Event ev;
 
-	//Resources
+	//Resources   ->cars
 	std::map<std::string, sf::Texture*> textures;
-	std::vector<Car*> cars;
+	std::vector< std::pair <Car*, int> > cars;
 	std::vector<std::pair<float, float> > car_positions =
 	{
-		{400, 358},  //down   2
-		{448 + 64, 237 + 64},  //right   4
-		{336 + 64, 190 + 64},  //up   6
-		{290, 300}   //left   8
+		{400, 358},  //down   1
+		{448 + 64, 237 + 64},  //right   2
+		{336 + 64, 190 + 64},  //up   3
+		{290, 300}   //left   4
 	};
-
+	//            ->pings
 	std::vector<std::pair<float, float> > ping_positions =
 	{
 		{367, 360},  //down   1
-		{466, 311},  //right   3
-		{411, 215},  //up   5
-		{316, 263}   //left   7
+		{466, 311},  //right   2
+		{411, 215},  //up   3
+		{316, 263}   //left   4
 	};
-	int freq[4];
+	int direction;
+
+	std::vector<int> priority;
+	std::deque<int> answer_list;
 
 	//Map	
 	sf::Texture texture;
 	sf::Sprite sprite;
-	sf::Sprite ping;
+
 	//Map objects
-	
+	sf::Sprite ping;
 
 	// Private functions
 	void initVariables();
@@ -64,15 +69,20 @@ private:
 	void initCars();
 	void initPing();
 
+	void output();
+	void givePriority();
+	void getPriorityOrder();
+
 public:
 	// Constructos / Destructors
-	Game(); 
-	virtual ~Game(); 
+	Game();
+	virtual ~Game();
 
 	//Accessors
 	const bool running() const;
 
 	//Functions
+	
 	void pollEvents();
 	void update();
 	void render();

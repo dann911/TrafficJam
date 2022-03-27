@@ -19,12 +19,12 @@ private:
 public:
 	// Constructors / Destructors
 
-	Car(sf::Texture* texture, float pos_x, float pos_y, double scale, int lane);
+	Car(sf::Texture* texture, float pos_x, float pos_y, double scale);
 	virtual ~Car();
 
 	//Functions
 
 	void update();
-	void reender(sf::RenderWindow* window);
+	void render(sf::RenderWindow* window);
 };
 
