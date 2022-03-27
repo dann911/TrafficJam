@@ -7,7 +7,7 @@
 
 // Constructors / Destructors
 
-Car::Car(sf::Texture* texture, float pos_x, float pos_y, double scale)
+Car::Car(sf::Texture* texture, float pos_x, float pos_y, double scale, int lane)
 {
 	this->shape.setTexture(*texture);
 	this->shape.setPosition(pos_x, pos_y);
