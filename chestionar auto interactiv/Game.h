@@ -34,16 +34,25 @@ private:
 	std::vector<Car*> cars;
 	std::vector<std::pair<float, float> > car_positions =
 	{
-		{400, 358},  //down
-		{448 + 64, 237 + 64},  //right
-		{336 + 64, 190 + 64},  //up
-		{290, 300}   //left
+		{400, 358},  //down   2
+		{448 + 64, 237 + 64},  //right   4
+		{336 + 64, 190 + 64},  //up   6
+		{290, 300}   //left   8
 	};
+
+	std::vector<std::pair<float, float> > ping_positions =
+	{
+		{367, 360},  //down   1
+		{466, 311},  //right   3
+		{411, 215},  //up   5
+		{316, 263}   //left   7
+	};
+	int freq[4];
 
 	//Map	
 	sf::Texture texture;
 	sf::Sprite sprite;
-
+	sf::Sprite ping;
 	//Map objects
 	
 
@@ -53,6 +62,7 @@ private:
 	void initTextures();
 	void initSprites();
 	void initCars();
+	void initPing();
 
 public:
 	// Constructos / Destructors

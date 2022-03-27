@@ -27,7 +27,7 @@ void Game::initTextures()
 {
     //Load map texture from file
 	if (this->texture.loadFromFile("Textures/basic intersection v2.PNG") == false)
-		std::cout << "nu-l gasim pe cioaca" << std::endl;
+		std::cout << "map not found" << std::endl;
 
 	this->textures["CARBLUE-HOR"] = new sf::Texture();
 	if (this->textures["CARBLUE-HOR"]->loadFromFile("Textures/car1-horizontal.png") == false)
@@ -42,6 +42,8 @@ void Game::initTextures()
 	this->textures["CARGREEN-VER"] = new sf::Texture();
 	this->textures["CARGREEN-VER"]->loadFromFile("Textures/carGREEN-vertical.png");
 
+	this->textures["PING"] = new sf::Texture();
+	this->textures["PING"]->loadFromFile("Textures/ping.png");
 }
 
 void Game::initSprites()
@@ -56,15 +58,21 @@ void Game::initSprites()
 
 void Game::initCars()
 {
-	this->cars.push_back(new Car(this->textures["CARRED-VER"], car_positions[1 - 1].first, car_positions[1 - 1].second, 0.25));
-	this->cars.push_back(new Car(this->textures["CARBLUE-HOR"], car_positions[2 - 1].first, car_positions[2 - 1].second, -0.25));
-	this->cars.push_back(new Car(this->textures["CARGREEN-VER"], car_positions[3 - 1].first, car_positions[3 - 1].second, -0.25));
-	this->cars.push_back(new Car(this->textures["CARYELLOW-HOR"], car_positions[4 - 1].first, car_positions[4 - 1].second, 0.25));
+	this->cars.push_back(new Car(this->textures["CARRED-VER"], car_positions[1 - 1].first, car_positions[1 - 1].second, 0.25, 2));
+	this->cars.push_back(new Car(this->textures["CARBLUE-HOR"], car_positions[2 - 1].first, car_positions[2 - 1].second, -0.25, 4));
+	this->cars.push_back(new Car(this->textures["CARGREEN-VER"], car_positions[3 - 1].first, car_positions[3 - 1].second, -0.25, 6));
+	this->cars.push_back(new Car(this->textures["CARYELLOW-HOR"], car_positions[4 - 1].first, car_positions[4 - 1].second, 0.25, 8));
 
 	std::random_shuffle(std::begin(cars), std::end(cars));
 
 	while (this->cars.size() > this->NumberOfCars)
 		cars.pop_back();
+}
+
+void Game::initPing()
+{
+	this->ping.setTexture(*textures["PING"]);
+
 }
 
 
@@ -78,6 +86,7 @@ Game::Game()
 	this->initTextures();
 	this->initSprites();
 	this->initCars();
+	this->initPing();
 }
 
 Game::~Game()
@@ -122,7 +131,7 @@ void Game::update()
 {
 	this->pollEvents();
 	//Mouse Position relative to the window
-	//std::cout << "Mouse Pos: " << sf::Mouse::getPosition(*this->window).x << " " <<sf::Mouse::getPosition(*this->window).y << "\n";
+	std::cout << "Mouse Pos: " << sf::Mouse::getPosition(*this->window).x << " " <<sf::Mouse::getPosition(*this->window).y << "\n";
 }
 
 void Game::render()
