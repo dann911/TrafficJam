@@ -59,6 +59,46 @@ void Game::initTextures()
 
 	this->textures["DRUM_CU_PRIORITATE_HOR"] = new sf::Texture();
 	this->textures["DRUM_CU_PRIORITATE_HOR"]->loadFromFile("Textures/DrumCuPrioritate - hor.png");
+
+	this->textures["1.3"] = new sf::Texture();
+	this->textures["1.3"]->loadFromFile("Textures/1.3.png");
+	 
+	this->textures["2.3"] = new sf::Texture();
+	this->textures["2.3"]->loadFromFile("Textures/2.3.png");
+
+	this->textures["3.3"] = new sf::Texture();
+	this->textures["3.3"]->loadFromFile("Textures/3.3.png");
+
+	this->textures["1.2"] = new sf::Texture();
+	this->textures["1.2"]->loadFromFile("Textures/1.2.png");
+
+	this->textures["2.2"] = new sf::Texture();
+	this->textures["2.2"]->loadFromFile("Textures/2.2.png");
+
+	this->textures["3OPTIONS"] = new sf::Texture();
+	this->textures["3OPTIONS"]->loadFromFile("Textures/3option.png");
+
+	this->textures["2OPTIONS"] = new sf::Texture();
+	this->textures["2OPTIONS"]->loadFromFile("Textures/option2.png");
+
+	this->textures["1.3CHECK"] = new sf::Texture();
+	this->textures["1.3CHECK"]->loadFromFile("Textures/right1.3.png");
+
+	this->textures["2.3CHECK"] = new sf::Texture();
+	this->textures["2.3CHECK"]->loadFromFile("Textures/right2.3.png");
+
+	this->textures["3.3CHECK"] = new sf::Texture();
+	this->textures["3.3CHECK"]->loadFromFile("Textures/right3.3.png");
+
+	this->textures["1.2CHECK"] = new sf::Texture();
+	this->textures["1.2CHECK"]->loadFromFile("Textures/right1.2.png");
+
+	this->textures["2.2CHECK"] = new sf::Texture();
+	this->textures["2.2CHECK"]->loadFromFile("Textures/right2.2.png");
+
+
+
+
 }
 
 void Game::initSprites()
@@ -92,6 +132,11 @@ void Game::initPing()
 {
 	this->ping.setTexture(*textures["PING"]);
 	this->ping.setPosition(ping_positions[direction / 2].first, ping_positions[direction / 2].second);
+}
+
+void Game::initChoiseBox()
+{
+
 }
 
 // Game algorithm private functions
@@ -253,6 +298,7 @@ Game::Game()
 	this->initCars();
 	this->initPing();
 	this->getPriorityOrder();
+	this->initChoiseBox();
 }
 
 Game::~Game()
@@ -305,6 +351,12 @@ void Game::pollEvents()
 		}
 		
 	}
+}
+
+void Game::updateMousePosition()
+{
+	this->mousePosWindow = sf::Mouse::getPosition(*this->window);
+	this->mousePosView = this->window->mapPixelToCoords(this->mousePosWindow);
 }
 
 void Game::update()

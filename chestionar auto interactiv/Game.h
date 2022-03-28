@@ -27,6 +27,11 @@ private:
 	int NumberOfCars;
 	bool decision;
 
+	//Mouse
+
+	sf::Vector2i mousePosWindow;
+	sf::Vector2f mousePosView;
+
 	//Window
 	sf::RenderWindow* window;
 	sf::VideoMode VideoMode;
@@ -63,7 +68,7 @@ private:
 	std::vector< std::pair<float, float> > sign_positions =
 	{
 		{460, 361},  //down   1
-		{461 + 24, 218 + 40},  //right   3
+		{468 + 24, 208 + 40},  //right   3
 		{321 + 24, 210 + 40},  //up   5
 		{309, 355}   //left   7
 	};
@@ -80,6 +85,8 @@ private:
 
 	//Map objects
 	sf::Sprite ping;
+	sf::Sprite questionbox1;
+	sf::Sprite questionbox2;
 
 	// Private functions
 	void initVariables();
@@ -88,6 +95,7 @@ private:
 	void initSprites();
 	void initCars();
 	void initPing();
+	void initChoiseBox();
 
 	void output();
 	void givePriority();
@@ -106,6 +114,7 @@ public:
 	//Functions
 	
 	void pollEvents();
+	void updateMousePosition();
 	void update();
 	void render();
 };
