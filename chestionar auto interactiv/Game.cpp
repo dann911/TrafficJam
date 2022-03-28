@@ -158,6 +158,18 @@ void Game::getPriorityOrder()
 	this->output();
 }
 
+void Game::resetValues()
+{
+	this->NumberOfCars = std::rand() % 2 + 2;
+	std::cout << NumberOfCars << std::endl;
+	this->decision = 0 + (rand() % (1 - 0 + 1)) == 1;
+	std::cout << "Descision is: " << this->decision << std::endl;
+
+	this->cars.erase(std::begin(cars), std::end(cars));
+	this->answer_list.erase(std::begin(answer_list), std::end(answer_list));
+	this->priority.erase(std::begin(priority), std::end(priority));
+}
+
 
 
 
@@ -208,8 +220,18 @@ void Game::pollEvents()
 		case sf::Event::KeyPressed:
 			if (this->ev.key.code == sf::Keyboard::Escape)
 				this->window->close();
+			else if (this->ev.key.code == sf::Keyboard::Space)
+			{
+				std::system("CLS");
+				resetValues();
+				initSprites();
+				initCars();
+				initPing();
+				getPriorityOrder();
+			}
 			break;
 		}
+		
 	}
 }
 

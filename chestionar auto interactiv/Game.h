@@ -73,6 +73,8 @@ private:
 	void givePriority();
 	void getPriorityOrder();
 
+	void resetValues();
+
 public:
 	// Constructos / Destructors
 	Game();
