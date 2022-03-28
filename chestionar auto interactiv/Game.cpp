@@ -47,6 +47,18 @@ void Game::initTextures()
 
 	this->textures["PING"] = new sf::Texture();
 	this->textures["PING"]->loadFromFile("Textures/Ping.png");
+
+	this->textures["ACORDA_PRIORITATE_VER"] = new sf::Texture();
+	this->textures["ACORDA_PRIORITATE_VER"]->loadFromFile("Textures/AcordaPrioritate.png");
+
+	this->textures["ACORDA_PRIORITATE_HOR"] = new sf::Texture();
+	this->textures["ACORDA_PRIORITATE_HOR"]->loadFromFile("Textures/AcordaPrioritate - hor.png");
+
+	this->textures["DRUM_CU_PRIORITATE_VER"] = new sf::Texture();
+	this->textures["DRUM_CU_PRIORITATE_VER"]->loadFromFile("Textures/DrumCuPrioritate.png");
+
+	this->textures["DRUM_CU_PRIORITATE_HOR"] = new sf::Texture();
+	this->textures["DRUM_CU_PRIORITATE_HOR"]->loadFromFile("Textures/DrumCuPrioritate - hor.png");
 }
 
 void Game::initSprites()
@@ -148,6 +160,62 @@ void Game::getPriorityOrder()
 			phase++;
 		}
 	}
+
+	if (decision == 1)
+	{
+		int RandCase = rand() % 2;
+
+		if (RandCase == 0)    // Drum cu prioritate
+		{
+			for (int i = 0; i < this->priority.size(); i++)
+			{
+				switch (this->priority[i])
+				{
+				case 1:
+					this->streetSigns.push_back(new StreetSign(this->textures["DRUM_CU_PRIORITATE_VER"], sign_positions[0].first, sign_positions[0].second, 1.f));
+					break;
+
+				case 3:
+					this->streetSigns.push_back(new StreetSign(this->textures["DRUM_CU_PRIORITATE_HOR"], sign_positions[1].first, sign_positions[1].second, -1.f));
+					break;
+
+				case 5:
+					this->streetSigns.push_back(new StreetSign(this->textures["DRUM_CU_PRIORITATE_VER"], sign_positions[2].first, sign_positions[2].second, -1.f));
+					break;
+
+				case 7:
+					this->streetSigns.push_back(new StreetSign(this->textures["DRUM_CU_PRIORITATE_HOR"], sign_positions[3].first, sign_positions[3].second, 1.f));
+					break;
+				}
+			}
+		}
+
+		else if (RandCase == 1)  //Acorda prioritate
+		{
+			for (int i = 0; i < answer_list.size(); i++)
+			{
+				switch (this->answer_list[i])
+				{
+				case 1:
+					this->streetSigns.push_back(new StreetSign(this->textures["ACORDA_PRIORITATE_VER"], sign_positions[0].first, sign_positions[0].second, 1.f));
+					break;
+
+				case 3:
+					this->streetSigns.push_back(new StreetSign(this->textures["ACORDA_PRIORITATE_HOR"], sign_positions[1].first, sign_positions[1].second, -1.f));
+					break;
+
+				case 5:
+					this->streetSigns.push_back(new StreetSign(this->textures["ACORDA_PRIORITATE_VER"], sign_positions[2].first, sign_positions[2].second, -1.f));
+					break;
+
+				case 7:
+					this->streetSigns.push_back(new StreetSign(this->textures["ACORDA_PRIORITATE_HOR"], sign_positions[3].first, sign_positions[3].second, 1.f));
+					break;
+				}
+			}
+		}
+	}
+
 	
 	this->output();
 
@@ -166,6 +234,7 @@ void Game::resetValues()
 	std::cout << "Descision is: " << this->decision << std::endl;
 
 	this->cars.erase(std::begin(cars), std::end(cars));
+	this->streetSigns.erase(std::begin(streetSigns), std::end(streetSigns));
 	this->answer_list.erase(std::begin(answer_list), std::end(answer_list));
 	this->priority.erase(std::begin(priority), std::end(priority));
 }
@@ -197,6 +266,9 @@ Game::~Game()
 
 	for (auto& i : this->cars)
 		delete i.first;
+
+	for (auto* sign : this->streetSigns)
+		delete sign;
 }
 
 const bool Game::running() const
@@ -264,6 +336,8 @@ void Game::render()
 		car.first->render(this->window);
 	}
 	this->window->draw(this->ping);
+	for (auto* sign : this->streetSigns)
+		sign->render(this->window);
 
 	this->window->display();
 }
