@@ -14,6 +14,7 @@
 
 #include "Car.h"
 #include "StreetSign.h"
+#include "TextureMap.h"
 
 /*
 *    Class that acts as the game engine.
@@ -38,7 +39,7 @@ private:
 	sf::Event ev;
 
 	//Resources 
-	std::map<std::string, sf::Texture*> textures;
+	TextureMap *texturesMap;
 
 	//    ->cars
 
@@ -95,7 +96,6 @@ private:
 	void initSprites();
 	void initCars();
 	void initPing();
-	void initChoiseBox();
 
 	void output();
 	void givePriority();
@@ -111,10 +111,13 @@ public:
 	//Accessors
 	const bool running() const;
 
+	//Variables
+
 	//Functions
 	
 	void pollEvents();
-	void updateMousePosition();
+	void updateMousePositions();
+	void updateCarsButtons();
 	void update();
 	void render();
 };
