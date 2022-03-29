@@ -13,19 +13,19 @@ void Car::initChoiceBox()
 		case 2:
 			std::cout << "meets case 2" << std::endl;
 			this->choiceBox.setTexture(textureMap().textures["2OPTION"]);
-			this->choiceBox.setPosition(0.f, 0.f);
-				//this->shape.getGlobalBounds().width - this->choiceBox.getGlobalBounds().width,
-				//this->shape.getGlobalBounds().height - this->choiceBox.getGlobalBounds().height
-			//);
+			this->choiceBox.setPosition(
+				this->shape.getGlobalBounds().width - this->choiceBox.getGlobalBounds().width,
+				this->shape.getGlobalBounds().height - this->choiceBox.getGlobalBounds().height
+			);
 			break;
 
 		case 3:
 			std::cout << "meets case 3" << std::endl;
 			this->choiceBox.setTexture(textureMap().textures["3OPTION"]);
-			this->choiceBox.setPosition(0.f, 0.f);
-			//this->shape.getGlobalBounds().width - this->choiceBox.getGlobalBounds().width,
-			//this->shape.getGlobalBounds().height - this->choiceBox.getGlobalBounds().height
-		//);
+			this->choiceBox.setPosition(
+			this->shape.getGlobalBounds().width - this->choiceBox.getGlobalBounds().width,
+			this->shape.getGlobalBounds().height - this->choiceBox.getGlobalBounds().height
+		);
 			break;
 	}
 
@@ -90,8 +90,8 @@ void Car::render(sf::RenderWindow* window)
 	window->draw(this->choiceBox);
 	if (this->buttonState == BTN_PRESSED)
 	{
-		//window->draw(this->choiceBox);
-		//std::cout << "true" << std::endl;
+		window->draw(this->choiceBox);
+		std::cout << "true" << std::endl;
 	}
 		
 }
