@@ -39,7 +39,7 @@ private:
 	sf::Event ev;
 
 	//Resources 
-	TextureMap *texturesMap;
+	TextureMap& textureMap();
 
 	//    ->cars
 
@@ -92,7 +92,6 @@ private:
 	// Private functions
 	void initVariables();
 	void initWindow();
-	void initTextures();
 	void initSprites();
 	void initCars();
 	void initPing();

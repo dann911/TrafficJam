@@ -29,17 +29,14 @@ void Game::initWindow()
 	this->window->setVerticalSyncEnabled(false);
 }
 
-void Game::initTextures()
-{
-	this->texturesMap = new TextureMap();
-}
+
 
 
 
 void Game::initSprites()
 {
 	//Set the map texture to the sprite
-	this->sprite.setTexture(*texturesMap->textures["MAP"]);
+	this->sprite.setTexture(textureMap().textures["MAP"]);
 	this->sprite.setPosition(sf::Vector2f(120.f, 90.f));
 	this->sprite.setScale(0.7, 0.7);
 
@@ -48,10 +45,10 @@ void Game::initSprites()
 
 void Game::initCars()
 {
-	this->cars.push_back(std::make_pair(new Car(texturesMap->textures["CARRED-VER"], car_positions[1 - 1].first, car_positions[1 - 1].second, 0.25, NumberOfCars), 1));
-	this->cars.push_back(std::make_pair(new Car(texturesMap->textures["CARBLUE-HOR"], car_positions[2 - 1].first, car_positions[2 - 1].second, -0.25, NumberOfCars), 3));
-	this->cars.push_back(std::make_pair(new Car(texturesMap->textures["CARGREEN-VER"], car_positions[3 - 1].first, car_positions[3 - 1].second, -0.25, NumberOfCars), 5));
-	this->cars.push_back(std::make_pair(new Car(texturesMap->textures["CARYELLOW-HOR"], car_positions[4 - 1].first, car_positions[4 - 1].second, 0.25, NumberOfCars), 7));
+	this->cars.push_back(std::make_pair(new Car(textureMap().textures["CARRED-VER"], car_positions[1 - 1].first, car_positions[1 - 1].second, 0.25, NumberOfCars), 1));
+	this->cars.push_back(std::make_pair(new Car(textureMap().textures["CARBLUE-HOR"], car_positions[2 - 1].first, car_positions[2 - 1].second, -0.25, NumberOfCars), 3));
+	this->cars.push_back(std::make_pair(new Car(textureMap().textures["CARGREEN-VER"], car_positions[3 - 1].first, car_positions[3 - 1].second, -0.25, NumberOfCars), 5));
+	this->cars.push_back(std::make_pair(new Car(textureMap().textures["CARYELLOW-HOR"], car_positions[4 - 1].first, car_positions[4 - 1].second, 0.25, NumberOfCars), 7));
 	
 
 	std::random_shuffle(std::begin(cars), std::end(cars));
@@ -66,7 +63,7 @@ void Game::initCars()
 
 void Game::initPing()
 {
-	this->ping.setTexture(*texturesMap->textures["PING"]);
+	this->ping.setTexture(textureMap().textures["PING"]);
 	this->ping.setPosition(ping_positions[direction / 2].first, ping_positions[direction / 2].second);
 }
 
@@ -150,19 +147,19 @@ void Game::getPriorityOrder()
 				switch (this->priority[i])
 				{
 				case 1:
-					this->streetSigns.push_back(new StreetSign(texturesMap->textures["DRUM_CU_PRIORITATE_VER"], sign_positions[0].first, sign_positions[0].second, 1.f));
+					this->streetSigns.push_back(new StreetSign(textureMap().textures["DRUM_CU_PRIORITATE_VER"], sign_positions[0].first, sign_positions[0].second, 1.f));
 					break;
 
 				case 3:
-					this->streetSigns.push_back(new StreetSign(texturesMap->textures["DRUM_CU_PRIORITATE_HOR"], sign_positions[1].first, sign_positions[1].second, -1.f));
+					this->streetSigns.push_back(new StreetSign(textureMap().textures["DRUM_CU_PRIORITATE_HOR"], sign_positions[1].first, sign_positions[1].second, -1.f));
 					break;
 
 				case 5:
-					this->streetSigns.push_back(new StreetSign(texturesMap->textures["DRUM_CU_PRIORITATE_VER"], sign_positions[2].first, sign_positions[2].second, -1.f));
+					this->streetSigns.push_back(new StreetSign(textureMap().textures["DRUM_CU_PRIORITATE_VER"], sign_positions[2].first, sign_positions[2].second, -1.f));
 					break;
 
 				case 7:
-					this->streetSigns.push_back(new StreetSign(texturesMap->textures["DRUM_CU_PRIORITATE_HOR"], sign_positions[3].first, sign_positions[3].second, 1.f));
+					this->streetSigns.push_back(new StreetSign(textureMap().textures["DRUM_CU_PRIORITATE_HOR"], sign_positions[3].first, sign_positions[3].second, 1.f));
 					break;
 				}
 			}
@@ -175,19 +172,19 @@ void Game::getPriorityOrder()
 				switch (this->answer_list[i])
 				{
 				case 1:
-					this->streetSigns.push_back(new StreetSign(texturesMap->textures["ACORDA_PRIORITATE_VER"], sign_positions[0].first, sign_positions[0].second, 1.f));
+					this->streetSigns.push_back(new StreetSign(textureMap().textures["ACORDA_PRIORITATE_VER"], sign_positions[0].first, sign_positions[0].second, 1.f));
 					break;
 
 				case 3:
-					this->streetSigns.push_back(new StreetSign(texturesMap->textures["ACORDA_PRIORITATE_HOR"], sign_positions[1].first, sign_positions[1].second, -1.f));
+					this->streetSigns.push_back(new StreetSign(textureMap().textures["ACORDA_PRIORITATE_HOR"], sign_positions[1].first, sign_positions[1].second, -1.f));
 					break;
 
 				case 5:
-					this->streetSigns.push_back(new StreetSign(texturesMap->textures["ACORDA_PRIORITATE_VER"], sign_positions[2].first, sign_positions[2].second, -1.f));
+					this->streetSigns.push_back(new StreetSign(textureMap().textures["ACORDA_PRIORITATE_VER"], sign_positions[2].first, sign_positions[2].second, -1.f));
 					break;
 
 				case 7:
-					this->streetSigns.push_back(new StreetSign(texturesMap->textures["ACORDA_PRIORITATE_HOR"], sign_positions[3].first, sign_positions[3].second, 1.f));
+					this->streetSigns.push_back(new StreetSign(textureMap().textures["ACORDA_PRIORITATE_HOR"], sign_positions[3].first, sign_positions[3].second, 1.f));
 					break;
 				}
 			}
@@ -226,7 +223,6 @@ Game::Game()
 {
 	this->initVariables();
 	this->initWindow();
-	this->initTextures();
 	this->initSprites();
 	this->initCars();
 	this->initPing();
@@ -238,9 +234,6 @@ Game::~Game()
 	delete this->window;
 
 	// Delete textures
-	
-	for (auto& i : texturesMap->textures)
-		delete i.second;
 
 	for (auto& i : this->cars)
 		delete i.first;

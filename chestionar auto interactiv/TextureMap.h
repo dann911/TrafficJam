@@ -7,7 +7,6 @@
 class TextureMap
 {
 	//Private functions
-	void initTextures();
 public:
 
 	// Constructors / Destructors
@@ -16,6 +15,6 @@ public:
 	virtual ~TextureMap();
 
 	// Resources
-	std::map<std::string, sf::Texture*> textures;
+	std::map<std::string, sf::Texture> textures;
 };
 

@@ -22,7 +22,6 @@ private:
 	sf::Sprite shape;
 	sf::Sprite choiceBox;
 	//Resources
-	TextureMap* texturesMap;
 	sf::Event ev;
 
 	//Colors
@@ -41,11 +40,12 @@ public:
 	
 	// Constructors / Destructors
 
-	Car(sf::Texture* texture, float pos_x, float pos_y, double scale, int& num_cars);
+	Car(sf::Texture texture, float pos_x, float pos_y, double scale, int& num_cars);
 	virtual ~Car();
 
 	//Resources
 	int numberOfCars;
+	TextureMap& textureMap();
 
 	//Functions
 

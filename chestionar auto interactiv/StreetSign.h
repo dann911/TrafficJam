@@ -20,7 +20,7 @@ private:
 public:
 	//Constructors / Destructors
 
-	StreetSign(sf::Texture* texture, float pos_x, float pos_y, double scale);
+	StreetSign(sf::Texture texture, float pos_x, float pos_y, double scale);
 	virtual ~StreetSign();
 
 	//Functions

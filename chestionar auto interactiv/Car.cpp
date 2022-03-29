@@ -3,6 +3,7 @@
 
 // Private functions
 
+
 void Car::initChoiceBox()
 {
 	std::cout << "number of cars  " << numberOfCars << std::endl;
@@ -11,7 +12,7 @@ void Car::initChoiceBox()
 		
 		case 2:
 			std::cout << "meets case 2" << std::endl;
-			this->choiceBox.setTexture(*texturesMap->textures["PING"]);
+			this->choiceBox.setTexture(textureMap().textures["2OPTION"]);
 			this->choiceBox.setPosition(0.f, 0.f);
 				//this->shape.getGlobalBounds().width - this->choiceBox.getGlobalBounds().width,
 				//this->shape.getGlobalBounds().height - this->choiceBox.getGlobalBounds().height
@@ -20,7 +21,7 @@ void Car::initChoiceBox()
 
 		case 3:
 			std::cout << "meets case 3" << std::endl;
-			this->choiceBox.setTexture(*texturesMap->textures["PING"]);
+			this->choiceBox.setTexture(textureMap().textures["PING"]);
 			this->choiceBox.setPosition(0.f, 0.f);
 			//this->shape.getGlobalBounds().width - this->choiceBox.getGlobalBounds().width,
 			//this->shape.getGlobalBounds().height - this->choiceBox.getGlobalBounds().height
@@ -34,12 +35,12 @@ void Car::initChoiceBox()
 // Constructors / Destructors
 
 
-Car::Car(sf::Texture* texture, float pos_x, float pos_y, double scale, int& num_cars)
+Car::Car(sf::Texture texture, float pos_x, float pos_y, double scale, int& num_cars)
 {
 	this->numberOfCars = num_cars;
 	this->initChoiceBox();
 	
-	this->shape.setTexture(*texture);
+	this->shape.setTexture(texture);
 	this->shape.setPosition(pos_x, pos_y);
 	this->shape.setScale(scale, scale);
 
