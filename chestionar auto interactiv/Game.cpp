@@ -45,10 +45,10 @@ void Game::initSprites()
 
 void Game::initCars()
 {
-	this->cars.push_back(std::make_pair(new Car(textureMap().textures["CARRED-VER"], car_positions[1 - 1].first, car_positions[1 - 1].second, 0.25, NumberOfCars), 1));
-	this->cars.push_back(std::make_pair(new Car(textureMap().textures["CARBLUE-HOR"], car_positions[2 - 1].first, car_positions[2 - 1].second, -0.25, NumberOfCars), 3));
-	this->cars.push_back(std::make_pair(new Car(textureMap().textures["CARGREEN-VER"], car_positions[3 - 1].first, car_positions[3 - 1].second, -0.25, NumberOfCars), 5));
-	this->cars.push_back(std::make_pair(new Car(textureMap().textures["CARYELLOW-HOR"], car_positions[4 - 1].first, car_positions[4 - 1].second, 0.25, NumberOfCars), 7));
+	this->cars.push_back(std::make_pair(new Car("CARRED-VER", car_positions[1 - 1].first, car_positions[1 - 1].second, 0.25, NumberOfCars), 1));
+	this->cars.push_back(std::make_pair(new Car("CARBLUE-HOR", car_positions[2 - 1].first, car_positions[2 - 1].second, -0.25, NumberOfCars), 3));
+	this->cars.push_back(std::make_pair(new Car("CARGREEN-VER", car_positions[3 - 1].first, car_positions[3 - 1].second, -0.25, NumberOfCars), 5));
+	this->cars.push_back(std::make_pair(new Car("CARYELLOW-HOR", car_positions[4 - 1].first, car_positions[4 - 1].second, 0.25, NumberOfCars), 7));
 	
 
 	std::random_shuffle(std::begin(cars), std::end(cars));
@@ -147,19 +147,19 @@ void Game::getPriorityOrder()
 				switch (this->priority[i])
 				{
 				case 1:
-					this->streetSigns.push_back(new StreetSign(textureMap().textures["DRUM_CU_PRIORITATE_VER"], sign_positions[0].first, sign_positions[0].second, 1.f));
+					this->streetSigns.push_back(new StreetSign("DRUM_CU_PRIORITATE_VER", sign_positions[0].first, sign_positions[0].second, 1.f));
 					break;
 
 				case 3:
-					this->streetSigns.push_back(new StreetSign(textureMap().textures["DRUM_CU_PRIORITATE_HOR"], sign_positions[1].first, sign_positions[1].second, -1.f));
+					this->streetSigns.push_back(new StreetSign("DRUM_CU_PRIORITATE_HOR", sign_positions[1].first, sign_positions[1].second, -1.f));
 					break;
 
 				case 5:
-					this->streetSigns.push_back(new StreetSign(textureMap().textures["DRUM_CU_PRIORITATE_VER"], sign_positions[2].first, sign_positions[2].second, -1.f));
+					this->streetSigns.push_back(new StreetSign("DRUM_CU_PRIORITATE_VER", sign_positions[2].first, sign_positions[2].second, -1.f));
 					break;
 
 				case 7:
-					this->streetSigns.push_back(new StreetSign(textureMap().textures["DRUM_CU_PRIORITATE_HOR"], sign_positions[3].first, sign_positions[3].second, 1.f));
+					this->streetSigns.push_back(new StreetSign("DRUM_CU_PRIORITATE_HOR", sign_positions[3].first, sign_positions[3].second, 1.f));
 					break;
 				}
 			}
@@ -172,19 +172,19 @@ void Game::getPriorityOrder()
 				switch (this->answer_list[i])
 				{
 				case 1:
-					this->streetSigns.push_back(new StreetSign(textureMap().textures["ACORDA_PRIORITATE_VER"], sign_positions[0].first, sign_positions[0].second, 1.f));
+					this->streetSigns.push_back(new StreetSign("ACORDA_PRIORITATE_VER", sign_positions[0].first, sign_positions[0].second, 1.f));
 					break;
 
 				case 3:
-					this->streetSigns.push_back(new StreetSign(textureMap().textures["ACORDA_PRIORITATE_HOR"], sign_positions[1].first, sign_positions[1].second, -1.f));
+					this->streetSigns.push_back(new StreetSign("ACORDA_PRIORITATE_HOR", sign_positions[1].first, sign_positions[1].second, -1.f));
 					break;
 
 				case 5:
-					this->streetSigns.push_back(new StreetSign(textureMap().textures["ACORDA_PRIORITATE_VER"], sign_positions[2].first, sign_positions[2].second, -1.f));
+					this->streetSigns.push_back(new StreetSign("ACORDA_PRIORITATE_VER", sign_positions[2].first, sign_positions[2].second, -1.f));
 					break;
 
 				case 7:
-					this->streetSigns.push_back(new StreetSign(textureMap().textures["ACORDA_PRIORITATE_HOR"], sign_positions[3].first, sign_positions[3].second, 1.f));
+					this->streetSigns.push_back(new StreetSign("ACORDA_PRIORITATE_HOR", sign_positions[3].first, sign_positions[3].second, 1.f));
 					break;
 				}
 			}

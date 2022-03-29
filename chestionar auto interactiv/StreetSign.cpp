@@ -4,9 +4,9 @@
 
 //Constructors / Destructors
 
-StreetSign::StreetSign(sf::Texture texture, float pos_x, float pos_y, double scale)
+StreetSign::StreetSign(std::string texture_name, float pos_x, float pos_y, double scale)
 {
-	this->shape.setTexture(texture);
+	this->shape.setTexture(textureMap().textures[texture_name]);
 	this->shape.setPosition(pos_x, pos_y);
 	this->shape.setScale(scale, scale);
 }

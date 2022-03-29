@@ -22,7 +22,6 @@ private:
 	sf::Sprite shape;
 	sf::Sprite choiceBox;
 	//Resources
-	sf::Event ev;
 
 	//Colors
 	sf::Color idleColor = sf::Color(160, 160, 160, 0);
@@ -40,7 +39,7 @@ public:
 	
 	// Constructors / Destructors
 
-	Car(sf::Texture texture, float pos_x, float pos_y, double scale, int& num_cars);
+	Car(std::string texture_name, float pos_x, float pos_y, double scale, int& num_cars);
 	virtual ~Car();
 
 	//Resources

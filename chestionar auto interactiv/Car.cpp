@@ -35,12 +35,12 @@ void Car::initChoiceBox()
 // Constructors / Destructors
 
 
-Car::Car(sf::Texture texture, float pos_x, float pos_y, double scale, int& num_cars)
+Car::Car(std::string texture_name, float pos_x, float pos_y, double scale, int& num_cars)
 {
 	this->numberOfCars = num_cars;
 	this->initChoiceBox();
 	
-	this->shape.setTexture(texture);
+	this->shape.setTexture(textureMap().textures[texture_name]);
 	this->shape.setPosition(pos_x, pos_y);
 	this->shape.setScale(scale, scale);
 

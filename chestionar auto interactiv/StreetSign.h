@@ -6,6 +6,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Network.hpp>
 
+#include "TextureMap.h"
 
 class StreetSign
 {
@@ -20,7 +21,7 @@ private:
 public:
 	//Constructors / Destructors
 
-	StreetSign(sf::Texture texture, float pos_x, float pos_y, double scale);
+	StreetSign(std::string texture_name, float pos_x, float pos_y, double scale);
 	virtual ~StreetSign();
 
 	//Functions
