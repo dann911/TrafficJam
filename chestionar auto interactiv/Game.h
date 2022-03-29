@@ -15,6 +15,7 @@
 #include "Car.h"
 #include "StreetSign.h"
 #include "TextureMap.h"
+#include "SmallCar.h"
 
 /*
 *    Class that acts as the game engine.
@@ -39,10 +40,11 @@ private:
 	sf::Event ev;
 
 	//Resources 
-
+	float width = 0.f;
 
 	//    ->cars
 
+	std::vector< int > aux_cars;
 	std::vector< std::pair <Car*, int> > cars;
 	std::vector< std::pair<float, float> > car_positions =
 	{
@@ -79,6 +81,9 @@ private:
 
 	std::vector<int> priority;
 	std::deque<int> answer_list;
+	std::vector< int > input_list;
+
+	bool isCarPressed[4];
 
 	//Map	
 	sf::Texture texture;
@@ -88,6 +93,8 @@ private:
 	sf::Sprite ping;
 	sf::Sprite questionbox1;
 	sf::Sprite questionbox2;
+
+	std::vector< SmallCar* > smallCars;
 
 	// Private functions
 	void initVariables();

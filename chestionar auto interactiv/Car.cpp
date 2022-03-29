@@ -4,41 +4,12 @@
 // Private functions
 
 
-void Car::initChoiceBox()
-{
-	std::cout << "number of cars  " << numberOfCars << std::endl;
-	switch(this->numberOfCars)
-	{
-		
-		case 2:
-			std::cout << "meets case 2" << std::endl;
-			this->choiceBox.setTexture(textureMap().textures["2OPTION"]);
-			this->choiceBox.setPosition(
-				this->shape.getGlobalBounds().width - this->choiceBox.getGlobalBounds().width,
-				this->shape.getGlobalBounds().height - this->choiceBox.getGlobalBounds().height
-			);
-			break;
-
-		case 3:
-			std::cout << "meets case 3" << std::endl;
-			this->choiceBox.setTexture(textureMap().textures["3OPTION"]);
-			this->choiceBox.setPosition(
-			this->shape.getGlobalBounds().width - this->choiceBox.getGlobalBounds().width,
-			this->shape.getGlobalBounds().height - this->choiceBox.getGlobalBounds().height
-		);
-			break;
-	}
-
-	
-}
-
 // Constructors / Destructors
 
 
 Car::Car(std::string texture_name, float pos_x, float pos_y, double scale, int& num_cars)
 {
 	this->numberOfCars = num_cars;
-	this->initChoiceBox();
 	
 	this->shape.setTexture(textureMap().textures[texture_name]);
 	this->shape.setPosition(pos_x, pos_y);
@@ -87,12 +58,6 @@ void Car::update(const sf::Vector2f mousePos)
 void Car::render(sf::RenderWindow* window)
 {
 	window->draw(this->shape);
-	window->draw(this->choiceBox);
-	if (this->buttonState == BTN_PRESSED)
-	{
-		window->draw(this->choiceBox);
-		std::cout << "true" << std::endl;
-	}
 		
 }
 

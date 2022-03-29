@@ -17,11 +17,15 @@ class Car
 private:
 	
 	short unsigned buttonState;
-	
 	//Objects
 	sf::Sprite shape;
-	sf::Sprite choiceBox;
+	
+
+
 	//Resources
+	int numberOfCars;
+	bool pressed;
+	
 
 	//Colors
 	sf::Color idleColor = sf::Color(160, 160, 160, 0);
@@ -30,11 +34,11 @@ private:
 
 	//Private functions
 
-	void initChoiceBox();
 
 	
 
 public:
+	
 	
 	
 	// Constructors / Destructors
@@ -43,7 +47,7 @@ public:
 	virtual ~Car();
 
 	//Resources
-	int numberOfCars;
+	std::string texture_name;
 
 	//Functions
 

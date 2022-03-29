@@ -108,6 +108,11 @@ void Game::givePriority()
 
 void Game::getPriorityOrder()
 {
+	for (int i = 0; i < NumberOfCars; i++)
+	{
+		this->aux_cars.push_back(this->cars[i].second);
+	}
+
 	if (this->direction == 0)
 		this->direction = 8;
 
@@ -199,6 +204,11 @@ void Game::getPriorityOrder()
 		this->answer_list.push_front(this->priority[i]);
 	}
 	this->output();
+
+	for (int i = 0; i < cars.size(); i++)
+	{
+		cars[i].second = aux_cars[i];
+	}
 }
 
 void Game::resetValues()
@@ -212,6 +222,10 @@ void Game::resetValues()
 	this->streetSigns.erase(std::begin(streetSigns), std::end(streetSigns));
 	this->answer_list.erase(std::begin(answer_list), std::end(answer_list));
 	this->priority.erase(std::begin(priority), std::end(priority));
+	for (int i = 0; i < 4; i++)
+		isCarPressed[i] = false;
+
+
 }
 
 
@@ -240,6 +254,9 @@ Game::~Game()
 
 	for (auto* sign : this->streetSigns)
 		delete sign;
+
+	for (auto* s_car : this->smallCars)
+		delete s_car;
 }
 
 const bool Game::running() const
@@ -278,9 +295,12 @@ void Game::pollEvents()
 			}
 			break;
 
+		
+
 		}
 
 		
+
 	}
 }
 
@@ -292,12 +312,19 @@ void Game::updateMousePositions()
 
 void Game::updateCarsButtons()
 {
-	for (auto& car : cars)
+	for (int i=0; i<NumberOfCars; i++)
 	{
-		car.first->update(this->mousePosView);
+		cars[i].first->update(this->mousePosView);
+		
+		if (cars[i].first->isPressed() == true && isCarPressed[i] == false)
+		{
+			isCarPressed[i] = true;
+			std::cout << "pressed " << i << std::endl;
+			input_list.push_back(cars[i].second);
 
-		if (car.first->isPressed() == true)
-			std::cout << "Megre coaie" << std::endl;
+			this->smallCars.push_back(new SmallCar(cars[i].first->texture_name, this->width, 0.f));
+			this->width += 30.f;
+		}
 	}
 }
 
@@ -336,6 +363,9 @@ void Game::render()
 	this->window->draw(this->ping);
 	for (auto* sign : this->streetSigns)
 		sign->render(this->window);
+	for (auto* s_car : this->smallCars)
+		s_car->render(this->window);
+	
 
 	this->window->display();
 }
