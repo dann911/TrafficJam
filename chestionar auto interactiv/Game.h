@@ -39,7 +39,7 @@ private:
 	sf::Event ev;
 
 	//Resources 
-	TextureMap& textureMap();
+
 
 	//    ->cars
 

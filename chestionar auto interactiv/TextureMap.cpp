@@ -76,3 +76,8 @@ TextureMap::TextureMap()
 TextureMap::~TextureMap()
 {
 }
+
+TextureMap& textureMap() {
+	static TextureMap instance;
+	return instance;
+}

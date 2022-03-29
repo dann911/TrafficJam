@@ -21,7 +21,7 @@ void Car::initChoiceBox()
 
 		case 3:
 			std::cout << "meets case 3" << std::endl;
-			this->choiceBox.setTexture(textureMap().textures["PING"]);
+			this->choiceBox.setTexture(textureMap().textures["3OPTION"]);
 			this->choiceBox.setPosition(0.f, 0.f);
 			//this->shape.getGlobalBounds().width - this->choiceBox.getGlobalBounds().width,
 			//this->shape.getGlobalBounds().height - this->choiceBox.getGlobalBounds().height

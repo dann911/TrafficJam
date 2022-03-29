@@ -45,7 +45,6 @@ public:
 
 	//Resources
 	int numberOfCars;
-	TextureMap& textureMap();
 
 	//Functions
 
