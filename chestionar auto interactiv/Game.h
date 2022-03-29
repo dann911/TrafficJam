@@ -5,6 +5,7 @@
 #include <deque>
 #include <map>
 #include <climits>
+#include <string>
 
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
@@ -39,6 +40,12 @@ private:
 	sf::VideoMode VideoMode;
 	sf::Event ev;
 
+	//Game Over and other accessors
+	sf::Sprite gameOver;
+	sf::Text scoreText;
+	sf::Font font;
+	std::string scoreString = "Score: ";
+	
 	//Resources 
 	float width = 0.f;
 
@@ -100,6 +107,7 @@ private:
 	void initVariables();
 	void initWindow();
 	void initSprites();
+	void initTexts();
 	void initCars();
 	void initPing();
 
@@ -108,6 +116,8 @@ private:
 	void getPriorityOrder();
 
 	void resetValues();
+
+
 
 public:
 	// Constructos / Destructors
@@ -118,12 +128,15 @@ public:
 	const bool running() const;
 
 	//Variables
+	bool gameEnd = false;
+	int score = 0;
 
 	//Functions
 	
 	void pollEvents();
 	void updateMousePositions();
 	void updateCarsButtons();
+	void evaluate();
 	void update();
 	void render();
 };

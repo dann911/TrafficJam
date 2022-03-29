@@ -10,6 +10,7 @@
 Car::Car(std::string texture_name, float pos_x, float pos_y, double scale, int& num_cars)
 {
 	this->numberOfCars = num_cars;
+	this->texture_name = texture_name;
 	
 	this->shape.setTexture(textureMap().textures[texture_name]);
 	this->shape.setPosition(pos_x, pos_y);

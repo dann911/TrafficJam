@@ -40,7 +40,20 @@ void Game::initSprites()
 	this->sprite.setPosition(sf::Vector2f(120.f, 90.f));
 	this->sprite.setScale(0.7, 0.7);
 
+	this->gameOver.setTexture(textureMap().textures["GAMEOVER"]);
+}
 
+void Game::initTexts()
+{
+	this->font.loadFromFile("Fonts/boge.ttf");
+
+	this->scoreString += std::to_string(this->score);
+
+	this->scoreText.setFont(font);
+	this->scoreText.setString(this->scoreString);
+	this->scoreText.setCharacterSize(16);
+	this->scoreText.setFillColor(sf::Color::White);
+	this->scoreText.setPosition(0.f, 550.f);
 }
 
 void Game::initCars()
@@ -84,6 +97,8 @@ void Game::output()
 
 void Game::givePriority()
 {
+	
+	
 	int random_pos = rand() % NumberOfCars;
 	std::cout << "Number of cars: " << NumberOfCars << std::endl;
 	this->priority.push_back(cars[random_pos].second);
@@ -196,14 +211,10 @@ void Game::getPriorityOrder()
 		}
 	}
 
-	
-	this->output();
-
 	for (int i = 0; i < priority.size(); i++)
 	{
 		this->answer_list.push_front(this->priority[i]);
 	}
-	this->output();
 
 	for (int i = 0; i < cars.size(); i++)
 	{
@@ -216,7 +227,6 @@ void Game::resetValues()
 	this->NumberOfCars = std::rand() % 2 + 2;
 	std::cout << NumberOfCars << std::endl;
 	this->decision = 0 + (rand() % (1 - 0 + 1)) == 1;
-	std::cout << "Descision is: " << this->decision << std::endl;
 
 	this->cars.erase(std::begin(cars), std::end(cars));
 	this->streetSigns.erase(std::begin(streetSigns), std::end(streetSigns));
@@ -224,10 +234,12 @@ void Game::resetValues()
 	this->priority.erase(std::begin(priority), std::end(priority));
 	for (int i = 0; i < 4; i++)
 		isCarPressed[i] = false;
-
+	smallCars.clear();
+	width = 0;
+	input_list.clear();
+	aux_cars.clear();
 
 }
-
 
 
 
@@ -238,9 +250,11 @@ Game::Game()
 	this->initVariables();
 	this->initWindow();
 	this->initSprites();
+	this->initTexts();
 	this->initCars();
 	this->initPing();
 	this->getPriorityOrder();
+	this->evaluate();
 }
 
 Game::~Game()
@@ -284,9 +298,10 @@ void Game::pollEvents()
 			if (this->ev.key.code == sf::Keyboard::Escape)
 				this->window->close();
 
-			else if (this->ev.key.code == sf::Keyboard::Space)
+			else if (this->ev.key.code == sf::Keyboard::Space && this->gameEnd == true)
 			{
 				std::system("CLS");
+				this->gameEnd = false;
 				resetValues();
 				initSprites();
 				initCars();
@@ -319,14 +334,39 @@ void Game::updateCarsButtons()
 		if (cars[i].first->isPressed() == true && isCarPressed[i] == false)
 		{
 			isCarPressed[i] = true;
-			std::cout << "pressed " << i << std::endl;
+			std::cout << "pressed " << cars[i].second << std::endl;
 			input_list.push_back(cars[i].second);
 
 			this->smallCars.push_back(new SmallCar(cars[i].first->texture_name, this->width, 0.f));
-			this->width += 30.f;
+			this->width += 50.f;
 		}
 	}
 }
+
+void Game::evaluate()
+{
+	for (int i = 0; i < input_list.size(); i++)
+	{
+		if (this->input_list[i] != this->answer_list[i])
+		{
+			this->gameEnd = true;
+			this->score = 0;
+			this->output();
+			return;
+		}
+	}
+	score++;  // if answers are correct, game continues
+	this->scoreString.pop_back();
+	this->initTexts();
+
+	std::system("CLS");
+	resetValues();
+	initSprites();
+	initCars();
+	initPing();
+	getPriorityOrder();
+}
+
 
 void Game::update()
 {
@@ -335,6 +375,11 @@ void Game::update()
 	this->updateMousePositions();
 
 	this->updateCarsButtons();
+
+	if (this->input_list.size() == this->answer_list.size())
+	{
+		this->evaluate();
+	}
 	//Mouse Position relative to the window
 	//std::cout << "Mouse Pos: " << sf::Mouse::getPosition(*this->window).x << " " <<sf::Mouse::getPosition(*this->window).y << "\n";
 }
@@ -351,21 +396,34 @@ void Game::render()
 		 Render the game objects
 	*/
 
-	this->window->clear(sf::Color(7, 0, 25));
-
-	// Draw game map
-	this->window->draw(this->sprite);
-	// Draw game objects
-	for (auto& car : this->cars)
-	{
-		car.first->render(this->window);
-	}
-	this->window->draw(this->ping);
-	for (auto* sign : this->streetSigns)
-		sign->render(this->window);
-	for (auto* s_car : this->smallCars)
-		s_car->render(this->window);
 	
 
+	this->window->clear(sf::Color(7, 0, 25));
+
+	if (this->gameEnd == false)
+	{
+		// Draw game map
+		this->window->draw(this->sprite);
+		// Draw game objects
+		for (auto& car : this->cars)
+		{
+			car.first->render(this->window);
+		}
+		this->window->draw(this->ping);
+		for (auto* sign : this->streetSigns)
+			sign->render(this->window);
+		for (auto* s_car : this->smallCars)
+			s_car->render(this->window);
+
+		this->window->draw(this->scoreText);
+		
+
+	}
+	else    /// GAME OVER screen
+	{
+		this->window->draw(this->gameOver);
+	}
+
+	
 	this->window->display();
 }

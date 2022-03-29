@@ -16,10 +16,14 @@ TextureMap::TextureMap()
 
 	this->textures["CARRED-VER"].loadFromFile("Textures/car2-vertical.png");
 
+	this->textures["CARRED-HOR"].loadFromFile("Textures/car2-horizontal.png");
+
 	this->textures["CARYELLOW-HOR"].loadFromFile("Textures/carYellow-horizontal.png");
 
 
 	this->textures["CARGREEN-VER"].loadFromFile("Textures/carGREEN-vertical.png");
+
+	this->textures["CARGREEN-HOR"].loadFromFile("Textures/carGreen-horizontal.png");
 
 	this->textures["PING"].loadFromFile("Textures/Ping.png");
 
@@ -34,6 +38,8 @@ TextureMap::TextureMap()
 
 
 	this->textures["DRUM_CU_PRIORITATE_HOR"].loadFromFile("Textures/DrumCuPrioritate - hor.png");
+
+	this->textures["GAMEOVER"].loadFromFile("Textures/GameOver.png");
 
 
 	this->textures["1.3"].loadFromFile("Textures/1.3.png");
