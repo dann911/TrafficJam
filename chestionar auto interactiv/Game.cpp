@@ -11,10 +11,8 @@ void Game::initVariables()
 
 	std::srand(time(0));
 	this->NumberOfCars = std::rand() % 2 + 2;
-	std::cout << NumberOfCars << std::endl;
 
 	this->decision = 0 + (rand() % (1 - 0 + 1)) == 1;
-	std::cout << "Descision is: " << this->decision << std::endl;
 }
 
 void Game::initWindow()
@@ -47,6 +45,7 @@ void Game::initTexts()
 {
 	this->font.loadFromFile("Fonts/boge.ttf");
 
+	this->scoreString = backup_string;
 	this->scoreString += std::to_string(this->score);
 
 	this->scoreText.setFont(font);
@@ -100,9 +99,7 @@ void Game::givePriority()
 	
 	
 	int random_pos = rand() % NumberOfCars;
-	std::cout << "Number of cars: " << NumberOfCars << std::endl;
 	this->priority.push_back(cars[random_pos].second);
-	std::cout << "PRIORITY given to: " << cars[random_pos].second << std::endl;
 
 	this->cars[random_pos].second = INT_MAX;
 
@@ -111,7 +108,6 @@ void Game::givePriority()
 		if (abs(cars[i].second - priority[0]) == 4)
 		{
 			this->priority.push_back(cars[i].second);
-			std::cout << "PRIORITY given to: " << this->cars[i].second << std::endl;
 			cars[i].second = INT_MAX;
 
 			if (abs(priority[0] - direction) < abs(priority[1] - direction))   //trebuie sortat descrescator pentru ca prin push front se insereaza invers
@@ -225,7 +221,6 @@ void Game::getPriorityOrder()
 void Game::resetValues()
 {
 	this->NumberOfCars = std::rand() % 2 + 2;
-	std::cout << NumberOfCars << std::endl;
 	this->decision = 0 + (rand() % (1 - 0 + 1)) == 1;
 
 	this->cars.erase(std::begin(cars), std::end(cars));
@@ -302,6 +297,7 @@ void Game::pollEvents()
 			{
 				std::system("CLS");
 				this->gameEnd = false;
+				this->score = -1;
 				resetValues();
 				initSprites();
 				initCars();
@@ -313,9 +309,6 @@ void Game::pollEvents()
 		
 
 		}
-
-		
-
 	}
 }
 
@@ -350,13 +343,13 @@ void Game::evaluate()
 		if (this->input_list[i] != this->answer_list[i])
 		{
 			this->gameEnd = true;
-			this->score = 0;
+			this->score = -1;
 			this->output();
 			return;
 		}
 	}
 	score++;  // if answers are correct, game continues
-	this->scoreString.pop_back();
+	
 	this->initTexts();
 
 	std::system("CLS");

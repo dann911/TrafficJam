@@ -45,6 +45,7 @@ private:
 	sf::Text scoreText;
 	sf::Font font;
 	std::string scoreString = "Score: ";
+	std::string backup_string = scoreString;
 	
 	//Resources 
 	float width = 0.f;
@@ -129,7 +130,7 @@ public:
 
 	//Variables
 	bool gameEnd = false;
-	int score = 0;
+	int score = -1;
 
 	//Functions
 	
