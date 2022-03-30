@@ -1,5 +1,7 @@
 -project TrafficJam-
 
+software educational
+
 TrafficJam este o aplicatie care reproduce, generat aleator, diferite variante ale unei intersectii. Dupa aceasta urmeaza implementarea unei anumite oridini de catre utilizator pentru a si verifica cunostintele de legislatie. Daca raspunsul este corect, aplicatia genereaza inca o intersecetie si scorul creste, in caz contrar va aparea un ecran "GAME OVER" care ii va permite persoanei sa reincerce;
 
 
@@ -16,4 +18,11 @@ dupa care calculand ordinea prioritatii, atat in cazul lipsei dirijarii intersec
 
 - Pentru optimizare este implementat un sistem de preload al texturilor, fiind stocate intr-un std::map si apelate de fiecare clasa pentru generarea unui sprite
 - Libraria Sfml a facut posibila generarea texturilor cat si a interfatei in sine.
+
+Realizarea proiectului:
+Game logic - Prioteasa Liviu
+Grafica - Ionica Dan
+Implementarea interfetei si a accesoriilor - Prioteasa Liviu, Ionica Dan
+
+Toate resursele grafce au fost create in Adobe Photoshop 2022
 
