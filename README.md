@@ -1,28 +1,38 @@
--project TrafficJam-
+The minigame will randomly generate traffic intersection scenarios in which the user will have to answer the correct priority order
+Internally it knows the needed **EU regulations**
 
-software educational
+## Screenshots:
 
-TrafficJam este o aplicatie care reproduce, generat aleator, diferite variante ale unei intersectii. Dupa aceasta urmeaza implementarea unei anumite oridini de catre utilizator pentru a si verifica cunostintele de legislatie. Daca raspunsul este corect, aplicatia genereaza inca o intersecetie si scorul creste, in caz contrar va aparea un ecran "GAME OVER" care ii va permite persoanei sa reincerce;
+![alt-text](_assets/screen1.png)
+
+![alt-text](_assets/screen2.png)
+
+![alt-text](_assets/screen3.png)
+## Model:
+
+Here we have a few real-life example of intersections that we want to generate:
+
+![alt-text](https://www.politiarutiera.ro/forum/attachment.php?attachmentid=980&d=1483193419)
+
+![alt-text](https://s3.eu-central-1.amazonaws.com/soferonline.public/img/questions/1438011222.jpg)
+
+![alt-text](https://4.bp.blogspot.com/-N0_z_i-gKxE/UFLcqiRHwEI/AAAAAAAAAxg/2FzDXaw9H2s/s1600/pri3.jpg)
 
 
-Tehnologii
-C++
-SFML
+- Firstly, it needs at least a direction that vehicles have to follow
+- Secondly, it needs at least 2 vehicles with a colliding route as shown above
 
-- Aplicatia este realizata strict in C++, utilizand Visual Studio
-- Fiecare nivel este generat random, logica jocului fiind formata dintr-un algoritm ce poate genera situatii aleatorii de trafic, respectand toate regulile de circulatie
-- Atat masinile cat si destinatia acestora este stocata in noduri pe un arbore orientat, ordinea prioritatii fiind generata de catre calculator prin algoritmi clasici de grafuri
-- Programul are optinunea de a oferi prioritate unei strazi (unei muchii pe arbore), aceasta decizie fiind luata aleatoriu de catre program la generarea nivelului
-- Pe harta pot fi generate intre 2 si 3 masini, tehnica de aplicare a algoritmului find una buttom-up, generand destinatia masinilor (ce reprezinta radacina arborelui), 
-dupa care calculand ordinea prioritatii, atat in cazul lipsei dirijarii intersectiei (regula prioritatii de dreapta), cat si in cazul drumurilor cu prioritate.
+## Technical:
 
-- Pentru optimizare este implementat un sistem de preload al texturilor, fiind stocate intr-un std::map si apelate de fiecare clasa pentru generarea unui sprite
-- Libraria Sfml a facut posibila generarea texturilor cat si a interfatei in sine.
+ - **Every direction and vehicle represents and object
+ - **We link them one to each in a tree like manor
+ - We determine priority order of multiple cars going in the same direction by their index
+ - In general, priority is ordered by the level where the object is found on the tree
+ 
+![alt text](_assets/graph.png)
 
-Realizarea proiectului:
-Game logic - Prioteasa Liviu
-Grafica - Ionica Dan
-Implementarea interfetei si a accesoriilor - Prioteasa Liviu, Ionica Dan
-
-Toate resursele grafce au fost create in Adobe Photoshop 2022
-
+### C++ integration:
+```c++
+std::deque<'type'> cars;
+std::vector<'type'> dirs;
+```
